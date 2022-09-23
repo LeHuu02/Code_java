@@ -10,17 +10,22 @@ package Object_OOP;
 
 import java.util.Scanner;
 
+/*run class input function in NewClass.java*/
 public class run_class {
     public static void main(String[] args) {
         /*nhap tong so nhan vien */
         int n;
+        /*tao doi tuong nhap de nhap du lieu tu ban phim*/
         Scanner nhap = new Scanner(System.in);
         System.out.print("nhap vao so luong nhan vien: ");
+        /*nhap gia tri n*/
         n = nhap.nextInt();
+        /*tao mot doi tuong nhanvien thuoc lop NewClass*/
         NewClass nhanvien = new NewClass();
         NewClass nv[] = new NewClass[10];
         
         System.out.print("nhap thong tin nhan vien \n");
+        /*goi ham nhapTT tu class NewClass co doi tuong la nhanvien*/
         nhanvien.nhapTT(nv, n);
         System.out.print("in thong in nhan vien: \n");
         nhanvien.hienTT(nv, n);
