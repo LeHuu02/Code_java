@@ -1,0 +1,52 @@
+package ktmtk19;
+import java.util.Scanner;
+public class NhanVien {
+    private static int manhanvien;
+    private static String hoten;
+    private static int hesoluong;
+    private static int phucap;
+    public static int luong;
+    NhanVien(){};
+    NhanVien(int manv, String hten, int hslg, int phcap, int lg){
+        this.manhanvien=manv;
+        this.hoten=hten;
+        this.hesoluong=hslg;
+        this.phucap=phcap;
+        this.luong=lg;
+    }
+    public static void nhapTT(){
+        Scanner nhap=new Scanner(System.in);
+        System.out.print("Nhap ma nhan vien= "); manhanvien=nhap.nextInt();
+        System.out.print("Nhap ho ten= ");nhap.nextLine(); hoten=nhap.nextLine();
+        System.out.print("Nhap he so luong= "); hesoluong=nhap.nextInt();
+        System.out.print("Nhap phu cap = "); phucap=nhap.nextInt();
+        NhanVien s=new NhanVien(manhanvien,hoten,hesoluong,phucap,luong);
+    
+    }
+    public static void hienTT(){
+        System.out.println(getManhanvien()+" "+getHoten()+" "+getHesoluong()+" "+getPhucap()+" "+getLuong());    
+    }
+
+    public static int getManhanvien() {
+        return manhanvien;
+    }
+
+    public static String getHoten() {
+        return hoten;
+    }
+
+    public static int getHesoluong() {
+        return hesoluong;
+    }
+
+    public static int getPhucap() {
+        return phucap;
+    }
+
+    public static int getLuong() {
+        luong=((1400000*hesoluong)+phucap);
+        return luong;
+    }
+   
+}   
+

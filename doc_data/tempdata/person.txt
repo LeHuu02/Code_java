@@ -1,0 +1,38 @@
+package ktmtk19;
+import java.util.Scanner;
+public class person {
+    private static String hoten;
+    private static String diachi;
+    private static int namsinh;
+    person(){}//toan tu tao lap: gan gtri ban dau cho cac bien dieu kien
+    person(String hten,String dchi,int nsinh){
+    this.hoten=hten;//this laf toan tu truy nhap den gia tri hien thoi
+    this.diachi=dchi;
+    this.namsinh=nsinh;
+    }
+    public static void nhapTT(){
+        Scanner nhap=new Scanner(System.in);
+        System.out.print("Nhap ho ten= "); hoten=nhap.nextLine();
+        System.out.print("Nhap dia chi= "); diachi=nhap.nextLine();
+        System.out.print("Nhap nam sinh= "); namsinh=nhap.nextInt();
+        person s=new person(hoten,diachi,namsinh);
+    
+    }
+    public static void hienTT(){
+        System.out.println(getHoten()+" "+getDiachi()+" "+getNamsinh());
+    }
+    //getter: 
+    
+    public static String getHoten() {
+        return hoten;
+    }
+
+    public static String getDiachi() {
+        return diachi;
+    }
+
+    public static int getNamsinh() {
+        return namsinh;
+    }
+    
+}

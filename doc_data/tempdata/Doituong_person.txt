@@ -1,0 +1,12 @@
+package ktmtk19;
+import java.util.Scanner;
+public class Doituong {
+    public static void main(String args[]){
+        person s =new person(); 
+        s.nhapTT();
+        s.hienTT();
+        person s1 =new person("KTMT","Bac Giang",2012);
+        s1.hienTT();
+    }
+    
+}

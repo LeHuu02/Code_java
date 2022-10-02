@@ -1,0 +1,17 @@
+package ktmtk19;
+public class toanhoc {
+    public static int tong(int a, int b){
+        return (a+b);
+        
+    }
+    public static int hieu(int a, int b){
+        return a-b;
+        
+    }
+    public static int tich(int a, int b){
+        return a*b;
+    }
+    public static double thuong(int a, int b){
+        return a/b;
+    }
+}

@@ -1,0 +1,12 @@
+package ktmtk19;
+import java.util.Scanner;
+public class Vandung1 {
+    public static void main(String args[]){
+     HCN h=new HCN();
+     h.nhapTT();
+     h.hienTT();
+            System.out.println("Chu vi="+h.Chuvi());
+            System.out.println("Dien tich="+h.Dientich);
+            
+    }
+}

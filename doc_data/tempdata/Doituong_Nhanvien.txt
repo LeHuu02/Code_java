@@ -1,0 +1,12 @@
+package ktmtk19;
+import java.util.Scanner;
+public class DoituongNV {
+    public static void main(String args[]){
+        NhanVien nv1=new NhanVien();
+        nv1.nhapTT();
+        nv1.hienTT();
+        NhanVien nv2=new NhanVien(001,"Nguyen Thu Ha",3,500000,4700000);
+        nv2.hienTT();
+    }
+    
+}

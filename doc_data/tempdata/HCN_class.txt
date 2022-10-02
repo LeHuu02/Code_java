@@ -1,0 +1,23 @@
+package ktmtk19;
+import java.util.Scanner;
+public class HCN {
+    public static int dai;
+    public static int rong;
+    public static void nhapTT(){
+            Scanner nhap=new Scanner(System.in);
+            System.out.printf("Nhap chieu dai = "); dai=nhap.nextInt();
+            System.out.printf("Nhap chieu rong= "); rong=nhap.nextInt();
+    }
+     
+    public static void hienTT(){
+        System.out.println("Chieu dai: "+dai+" - Chieu rong"+rong);
+    }
+    public static int Chuvi(){
+        return (dai+rong)*2;
+    }
+    public static int Dientich(){
+        return (dai*rong);
+        
+    }
+    
+}

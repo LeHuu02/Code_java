@@ -1,0 +1,20 @@
+package ktmtk19;
+import java.util.Scanner;
+public class Vandung {
+    public static void main(String args[]){
+        int a,b;
+        Scanner nhap=new Scanner(System.in);
+                System.out.print("Nhap a=");
+                a=nhap.nextInt();
+                System.out.print("Nhap b=");
+                b=nhap.nextInt();
+                toanhoc t=new toanhoc();
+                System.out.println("Tong="+t.tong(a,b));
+                int hieu=t.hieu(a,b);
+                System.out.println("Hieu="+hieu);
+                System.out.println("Tich="+t.tich(a,b));
+                //double thuong=t.thuong(a,b);
+                System.out.println("Thuong="+t.thuong(a,b));
+    }
+    }  
+}
