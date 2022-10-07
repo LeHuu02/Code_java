@@ -99,7 +99,7 @@ class mang {
         Scanner nhap = new Scanner(System.in);
         System.out.printf("nhap so phan tu mang: ");
         x = nhap.nextInt();     
-        System.out.println("vi tri cua phan tu "+x+" la: ");
+        System.out.print("vi tri cua phan tu "+x+" la: ");
         for(int i = 0; i < n; i++){
             if(arr[i] ==  x){
                 System.out.print((i+1)+"\t");
@@ -113,8 +113,8 @@ class mang {
     /*ham sap xep tang*/
     public void sapxeptang(int arr[], int n){
         int temp;
-        for(int i = 1; i < n; i++){
-            for(int j = i+1; j < i; i++){
+        for(int i = 0; i < (n-1); i++){
+            for(int j = i+1; j < n; j++){
                 if(arr[i] > arr[j]){      //neu vi tri sau lon hon vi tri truoc
                     temp = arr[i];      //cho temp =  gtri bien truoc 
                     arr[i] = arr[j];    //gtri bien truoc bang gtri bien sau
@@ -130,8 +130,8 @@ class mang {
     /*ham sap xep giam*/
     public void sapxepgiam(int arr[], int n){
         int temp;
-        for(int i = 0; i < n; i++){
-            for(int j = i+1; j < i; i++){
+        for(int i = 0; i < (n-1); i++){
+            for(int j = i+1; j < n; j++){
                 if(arr[i] < arr[j]){      //neu vi tri sau lon hon vi tri truoc
                     temp = arr[i];      //cho temp =  gtri bien truoc 
                     arr[i] = arr[j];    //gtri bien truoc bang gtri bien sau
@@ -148,7 +148,6 @@ class mang {
 
 /*lop so nguyen to*/
 class songuyento {
-
     /*snt la so chi chia het cho 1 va chinh no*/
     public boolean ktrasnt(int i) {
         int dem = 0;
@@ -232,31 +231,11 @@ public class Array_basic {
         a.sapxeptang(arr, n);        
         a.insoam(arr, n);  
         
-                int temp;
-        for(int i = 0; i < n-1; i++){
-            for(int j = i+1; j < i; j++){
-                if(arr[i] > arr[j]){      //neu vi tri sau lon hon vi tri truoc
-//                    temp = arr[i];      //cho temp =  gtri bien truoc 
-//                    arr[i] = arr[j];    //gtri bien truoc bang gtri bien sau
-//                    arr[j] = temp;      //gia tri bien sau = gtri temp
-//                    
-                    temp = arr[j];
-                    arr[j] = arr[i];
-                    arr[i] = temp;
-                }
-            }
-        } 
-        System.out.print("\nmang sap xep tang: ");
-        for (int i = 0; i < n; i++) {
-            System.out.printf(arr[i] + "\t");
-        }
-        
         /*tao doi tuong snt thuoc lop songuyento*/
         songuyento snt = new songuyento();
         snt.insntkieu1(arr, n);
         snt.demsnt(arr, n);
         snt.tongsnt(arr, n);
     }
-
 
 }

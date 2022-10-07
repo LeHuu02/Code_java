@@ -14,74 +14,74 @@ In ra màn hình các phần tử âm/dương trong mảng.
 In ra màn hình các số nguyên tố, số hoàn hảo, số chính phương trong mảng.
 Tìm phần tử x trong mảng
 */
-package Array;
+package Thread;
+import static Thread.Thread_bt_m2chieu.arr;
+import static Thread.Thread_bt_m2chieu.m;
+import static Thread.Thread_bt_m2chieu.n;
 import java.util.Scanner;
 /*class main*/
-public class Mang_2_chieu {
-    public static void main(String[] args) {
-        int [][] arr = new int[100][100];
+public class Thread_bt_m2chieu {
+    static int n, m;
+    static int [][] arr = new int[100][100];
+    public static void main(String[] args) {    
         Scanner nhap = new Scanner(System.in);
         System.out.println("nhap vao so phan tu mang: ");
-        int n, m;
         n = nhap.nextInt();
-        m = nhap.nextInt();
+        m = nhap.nextInt(); 
         
         mang io = new mang();
-        io.nhap(arr, n, m);
-        io.xuat(arr, n, m);
-        io.tongmang(arr, n, m);
-        io.tongchanle(arr, n, m);
-        io.tongchia2_3_5(arr, n, m);
-        io.insoam(arr, n, m);
-        io.minmax(arr, n, m);
-        
-        mang2c m2 = new mang2c();
-        m2.in_tongchinh(arr, n, m);
-        m2.in_tongphu(arr, n, m);
-        m2.maxcot(arr, n, m);
-        m2.maxhang(arr, n, m);
-        m2.mincot(arr, n, m);
-        m2.minhang(arr, n, m);
-        
-        songuyento snt = new songuyento();
-        snt.insnt(arr, n, m);
-        snt.tongsnt(arr, n, m);
+        io.start();
     }
 }
 
-class mang{
-    public void nhap(int arr[][], int n, int m){
+class mang extends Thread{
+    @Override
+    public void run(){
+        nhap();
+        xuat();
+        tongmang();
+        tongchanle();
+        tongchia2_3_5();
+        insoam();
+        minmax(); 
+        mang2c m2 = new mang2c();
+        m2.start();
+        songuyento snt = new songuyento();
+        snt.start();
+        
+    }
+    public void nhap(){
         Scanner nhap = new Scanner(System.in);
         System.out.println("nhap  cac phan tu cua mang:  ");
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 System.out.print("phan tu ["+i+"]["+j+"]: ");
                 arr[i][j] = nhap.nextInt();
             }
         }
     }
-    public void xuat(int arr[][], int n, int m){
+    public void xuat(){
         System.out.println("in ra phan tu mang vua nhap: ");
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 System.out.print("["+i+"]["+j+"]: "+arr[i][j]+"\t");
             }
             System.out.println("");
         }
     }
-    public void tongmang(int arr[][], int n, int m){
+    public void tongmang(){
         int tong = 0;
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 tong += arr[i][j];
             }
         }
         System.out.println("tong phan tu mang: "+tong);
     }
-    public void tongchanle(int arr[][], int n, int m){
+    public void tongchanle(){
         int tongchan = 0, tongle = 0;
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 if(arr[i][j]%2 == 0){
                     tongchan +=arr[i][j];
                 }else{
@@ -92,14 +92,14 @@ class mang{
         System.out.println("tong le phan tu mang: "+tongle);
         System.out.println("tong chan phan tu mang: "+tongchan);
     }
-    public void timptuvitrix(int arr[][], int n, int m){
+    public void timptuvitrix(){
         Scanner nhap = new Scanner(System.in);
         System.out.print("nhap phan tu can tim mang: ");
         int x = nhap.nextInt();
         int dem = 0;
         System.out.println("vi tri cua ptru "+x+ " la: ");
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 if(x == arr[i][j]){
                     dem++;
                     System.out.println("["+i+"]{"+j+"]");
@@ -110,10 +110,10 @@ class mang{
             System.out.print("khong tim thay ptu "+x+" trong mang");
         }
     }
-    public void tongchia2_3_5(int arr[][], int n, int m){     
+    public void tongchia2_3_5(){     
         int t2 = 0, t3 = 0, t5 = 0, t55 = 0;
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 /*tong chia 2*/
                 if(arr[i][j]%2 == 0){
                     t2 += arr[i][j];
@@ -137,20 +137,20 @@ class mang{
         System.out.println("tong chia het cho 5: "+t5);
         System.out.println("tong chia het cho 2 va 5 : "+t55);
     }
-    public void insoam(int arr[][], int n, int m){
+    public void insoam(){
         System.out.println("cac phan tu co gia tri am trong mang: ");
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 if(arr[i][j] < 0){
                     System.out.print(arr[i][j]+"\t");
                 }
             }
         }
     }
-    public void minmax(int arr[][], int n, int m){
+    public void minmax(){
         int min = arr[0][0], max = arr[0][0]; 
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 if(min > arr[i][j]){
                     min = arr[i][j];
                 }
@@ -164,7 +164,12 @@ class mang{
     }  
 }
 
-class songuyento{
+class songuyento extends Thread{
+    @Override
+    public void run(){        
+        insnt();
+        tongsnt();
+    }
     public boolean ktrasnt(int i){
         int dem = 0;
         if(i <=1)
@@ -176,11 +181,11 @@ class songuyento{
         }
         return dem == 2;
     }
-    public void insnt(int arr[][], int n, int m){
+    public void insnt(){
         int dem = 0;
         System.out.print("\nsnt trong mang la: ");
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                if(ktrasnt(arr[i][j])){
                    System.out.print(arr[i][j]+"\t");
                    dem++;
@@ -189,10 +194,10 @@ class songuyento{
         }
         System.out.println("\nso luong snt trong mang la: "+dem);
     }  
-    public void tongsnt(int arr[][], int n, int m){
+    public void tongsnt(){
         int tong = 0;        
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                if(ktrasnt(arr[i][j])){
                    tong +=arr[i][j];
                }                
@@ -202,12 +207,21 @@ class songuyento{
     }    
 }
 
-class mang2c{
-    public void in_tongchinh(int arr[][], int n, int m){
+class mang2c extends Thread{
+    @Override
+    public void run(){
+        in_tongchinh();
+        in_tongphu();        
+        mincot();
+        minhang();
+        maxcot();
+        maxhang();
+    }
+    public void in_tongchinh(){
         int tong = 0;
         System.out.print("duong cheo chinh: ");
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 if(i == j){
                     System.out.print(arr[i][j]+"\t");
                     tong += arr[i][j];
@@ -216,13 +230,13 @@ class mang2c{
         }
         System.out.println("\ntong cheo chinh: "+tong);
     }
-    public void in_tongphu(int arr[][], int n, int m){
-        int max = n, tong = 0;
-        if(max < m)
-            max = m;
+    public void in_tongphu(){
+        int max = Thread_bt_m2chieu.n, tong = 0;
+        if(max < Thread_bt_m2chieu.m)
+            max = Thread_bt_m2chieu.m;
         System.out.print("duong cheo phu: ");
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
+            for(int j = 0; j < Thread_bt_m2chieu.m; j++){
                 if(i + j == max-1){
                     System.out.print(arr[i][j]+"\t");
                     tong += arr[i][j];
@@ -231,20 +245,11 @@ class mang2c{
         }
         System.out.println("\ntong cheo phu: "+tong);
     }
-    public void tongcheochinh(int arr[][], int n, int m){
-        
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                
-            }
-        }
-        
-    }
-    public void minhang(int arr[][], int n, int m){
+    public void minhang(){
         int min;        //theo hang thi gan [i][0]
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
             min = arr[i][0];    //gan ptu dau tien cua moi hang
-            for(int j = 1; j < m; j++){
+            for(int j = 1; j < Thread_bt_m2chieu.m; j++){
                 if(min > arr[i][j]){
                     min = arr[i][j];
                 }
@@ -253,11 +258,11 @@ class mang2c{
         }
         
     }
-    public void maxhang(int arr[][], int n, int m){
+    public void maxhang(){
         int max;        //theo hang thi gan [i][0]
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < Thread_bt_m2chieu.n; i++){
             max = arr[i][0];    //gan ptu dau tien cua moi hang
-            for(int j = 1; j < m; j++){
+            for(int j = 1; j < Thread_bt_m2chieu.m; j++){
                 if(max < arr[i][j]){
                     max = arr[i][j];
                 }
@@ -266,11 +271,11 @@ class mang2c{
         }
         
     }
-    public void mincot(int arr[][], int n, int m){
+    public void mincot(){
         int min;
-        for(int j = 0; j < m; j++){
+        for(int j = 0; j < Thread_bt_m2chieu.m; j++){
             min = arr[j][0];    //gan ptu dau tien cua moi cot
-            for(int i = 0; i < n; i++){            
+            for(int i = 0; i < Thread_bt_m2chieu.n; i++){            
                     if(min > arr[i][j]){
                     min = arr[i][j];
                 }
@@ -278,11 +283,11 @@ class mang2c{
         System.out.println("min cot "+j+ "la: "+min);
         }        
     }
-    public void maxcot(int arr[][], int n, int m){
+    public void maxcot(){
         int max;
-        for(int j = 0; j < m; j++){
+        for(int j = 0; j < Thread_bt_m2chieu.m; j++){
             max = arr[j][0];    //gan ptu dau tien cua moi cot
-            for(int i = 0; i < n; i++){            
+            for(int i = 0; i < Thread_bt_m2chieu.n; i++){            
                     if(max < arr[i][j]){
                     max = arr[i][j];
                 }
