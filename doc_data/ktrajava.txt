@@ -1,0 +1,528 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+import java.io.*;
+import java.net.*;
+/**
+ *
+ * @author THTN
+ */
+public class server {
+    public static int ktscp(int n){
+        if((int)Math.sqrt(n)*Math.sqrt(n)==n){
+        return 1;
+        
+    }
+        else{
+                return 0;
+                }
+    }
+      public static void main(String[] args) {
+          int b[]=new int [10];
+//          int str2[]=new int[10];
+    try{
+        ServerSocket ss=new ServerSocket(10);
+            System.out.println("ser ver dang lang nghe");
+            try{
+            Socket s=ss.accept();
+            System.out.println("client da ket noi voi server");
+            DataInputStream is=new DataInputStream(s.getInputStream());
+             DataOutputStream os=new DataOutputStream(s.getOutputStream());
+          String str=is.readUTF();
+          String str2=" ";
+//           int     str2 =Integer.parseInt(nhap.readLine());
+          System.out.println("so phan tu mang: "+str);
+          int n=Integer.parseInt(str);
+            for(int i=0;i<n;i++){
+              b[i]=Integer.parseInt(is.readUTF());  
+              
+            }
+           System.out.println("mang nhan duoc la: ");
+           for(int i=0;i<n;i++){
+               System.out.println(b[i]+" ");
+               
+           }
+        System.out.println("cac so chinh phuong la: ");
+         for(int i=0;i<n;i++){
+           if(ktscp(b[i])==1) {
+                System.out.println(b[i]+" ");
+               str2 +=" "+b[i];
+             
+             
+         }
+         }
+            System.out.println("cac so chinh phuong la: ");
+            os.writeUTF(String.valueOf(str2));
+            os.flush();
+        }catch(IOException e1){
+            System.out.println("loi _clien da huy  ket noi: "+e1);
+            
+        }
+        }catch(IOException e){
+                System.out.println("loi2: "+e);
+                }
+    
+    
+    }
+}
+
+
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+import java.io.*;
+import java.net.*;
+/**
+ *
+ * @author THTN
+ */
+public class client {
+      public static void main(String[] args) {
+          int a[]=new int[20];
+    try{
+        Socket s=new Socket("127.0.0.1",10);
+         DataInputStream is=new DataInputStream(s.getInputStream());
+             DataOutputStream os=new DataOutputStream(s.getOutputStream());
+
+             try{
+        DataInputStream nhap=new  DataInputStream(System.in);
+        System.out.println("nhap vao  mot phan tu mang: ");
+       
+   int     n=Integer.parseInt(nhap.readLine());
+       os.writeUTF(String.valueOf(n));
+        os.flush();
+        //nhap phan tu mang
+for(int i=0;i<n;i++){
+    System.out.println("a["+i+"]=");
+    a[i]=Integer.parseInt(nhap.readLine());
+    
+    
+}
+System.out.println("mang vua nhap la: ");
+for(int i=0;i<n;i++){
+    System.out.println(a[i]+" ");
+    
+}
+///xuat  mang sang sever
+for(int i=0;i<n;i++){
+    os.writeUTF(String.valueOf(a[i]));
+    os.flush();
+    
+}  
+        String nhan=is.readUTF();
+        System.out.println("ket qua la: "+nhan);
+             
+    }catch(IOException e1){
+        System.out.println("loi: "+e1);
+        
+    }
+              os.close();
+             is.close();
+             s.close();
+              }catch(IOException e){
+        System.out.println("loi: "+e);
+              }
+            
+}
+
+     }
+
+
+
+
+bai 2
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+
+import java.util.Scanner;
+public class sinhvien {
+     private int masv;
+    private String hoten;
+    private String diachi;
+    private int diem;
+    
+    public sinhvien(){}
+    public sinhvien(int masv, String hoten, String diachi, int diem) {
+        this.masv = masv;
+        this.hoten = hoten;
+        this.diachi = diachi;
+        this.diem= diem;
+        
+    }
+
+    public int getMasv() {
+        return masv;
+    }
+
+    public String getHoten() {
+        return hoten;
+    }
+
+    public String getDiachi() {
+        return diachi;
+    }
+
+    public int getDiem() {
+        return diem;
+    }
+
+   
+   
+
+      
+
+   public static void nhapTT(sinhvien sv[],int n){
+       Scanner nhap=new Scanner (System.in);
+       int masv,diem;
+             
+       String hoten,diachi;
+       for(int i=0;i<n;i++){
+           System.out.print("ma nhan vien: ");masv=nhap.nextInt();
+            System.out.print("hoten: ");nhap.nextLine();hoten=nhap.nextLine();
+             System.out.print("diachi: ");diachi=nhap.nextLine();
+              System.out.print("diem: ");diem=nhap.nextInt();
+             
+       sv[i]=new sinhvien(masv,hoten,diachi,diem);
+       }
+       
+   } 
+   public void hienTT(sinhvien sv[],int n){
+      System.out.println("ma nv - hoten - heso- phucap-luong");
+       for(int i=0;i<n;i++){
+           System.out.println(sv[i].getMasv()+"-"+sv[i].getHoten()+"-"+sv[i].getDiachi()+"-"+sv[i].getDiem());
+       }
+   }
+}
+
+
+
+
+
+test   
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+import java.util.Scanner;
+/**
+ *
+ * @author THTN
+ */
+public class tesssinhvien {
+     public static void main(String args[]){
+        int n;
+        Scanner sc=new Scanner(System.in);
+        do{
+        System.out.println("nhap so sinh vien n 2<n<10: ");
+        n=sc.nextInt();
+        }while(2>n || n>10);
+        sinhvien sv=new sinhvien();
+        sinhvien v[]=new sinhvien[10];
+        System.out.println("nhap thong tin sinh vien");
+        sv.nhapTT(v,n);
+        System.out.println("hien thong tin sinh vien");
+        sv.hienTT(v,n);
+       
+           
+    }
+}
+
+
+
+
+
+
+duc
+package kiemtra;
+import java.io.*;
+import java.net.*;
+public class server {
+    public static void main(String args[]){
+        try{
+            ServerSocket ss=new  ServerSocket(100);
+            System.out.println("Server dang lang nghe...");
+            try{
+                Socket s=ss.accept();
+                System.out.println("Da ket noi voi client");
+                DataInputStream is=new DataInputStream(s.getInputStream());
+                DataOutputStream os=new DataOutputStream(s.getOutputStream());
+                String nhan=is.readUTF();
+                System.out.println("\nClient gui: "+nhan); 
+                int demhoa=0;
+                for(int i=0; i<nhan.length();i++){
+                if(Character.isUpperCase(nhan.charAt(i)))demhoa++;
+                
+    }
+        System.out.println("So ky tu in hoa trong chuoi la: "+demhoa);  
+        os.writeUTF(String.valueOf(demhoa));
+        os.flush();
+            }catch(IOException e1){
+            System.out.println("Client da huy ket noi"+e1);
+        }
+    }catch(IOException e){
+            System.out.println("Loi: "+e);
+    }
+            
+        }
+    }
+
+
+
+
+
+
+
+
+package kiemtra;
+import java.io.*;
+import java.net.*;
+public class client {
+    public static void main(String args[]){
+    try{
+        Socket s=new Socket("127.0.0.1",100);
+        DataInputStream is=new DataInputStream(s.getInputStream());
+        DataOutputStream os=new DataOutputStream(s.getOutputStream());
+    try{
+        DataInputStream nhap=new DataInputStream(System.in);
+        System.out.println("Nhap vao mot chuoi: ");
+        String str=nhap.readLine();
+        os.writeUTF(str);
+        os.flush();
+        String nhan=is.readUTF();
+        System.out.println("So ky tu in hoa trong chuoi la: "+nhan);
+    
+    }catch(IOException ie){
+        System.out.println("Loi ket noi: "+ie);
+    }
+    os.close();
+    is.close();
+    s.close();
+    }catch(IOException e){
+        System.out.println("Loi"+e);
+        
+    }
+    }
+}
+
+
+
+
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ktmtk19;
+import java.io.*;
+import java.net.*;
+/**
+ *
+ * @author Admin
+ */
+public class server_mang {
+      public static void main(String[] args) {
+          int b[]=new int [10];
+    try{
+        ServerSocket ss=new ServerSocket(10);
+            System.out.println("ser ver dang lang nghe");
+            try{
+            Socket s=ss.accept();
+            System.out.println("client da ket noi voi server");
+            DataInputStream is=new DataInputStream(s.getInputStream());
+             DataOutputStream os=new DataOutputStream(s.getOutputStream());
+             String str=is.readUTF();
+             System.out.println("sophan tu mang: "+str);
+           int n=Integer.parseInt(str);
+           for(int i=0;i<n;i++){
+              b[i]=Integer.parseInt(is.readUTF());  
+              
+            }
+           System.out.println("mang nhan duoc la: ");
+           int min = b[0];
+           for(int i=1;i<n;i++){
+               System.out.println(b[i]+" ");
+               if(min > b[i] ){
+                   min = b[i];
+               }
+               
+           }
+//           int tong=0;
+//           for(int i=0;i<n;i++){
+//               tong=tong+b[i];///thay doi thuat toantai day
+//           }
+//           System.out.println("tong="+tong);
+           os.writeUTF(String.valueOf(min));
+           os.flush();
+        }catch(IOException ie){
+            System.out.println("loi _clien da huy  ket noi: "+ie);
+            
+        }
+        }catch(IOException e){
+                System.out.println("loi2: "+e);
+                }
+    
+    
+    }
+}
+
+
+
+
+
+
+quan
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ktmtk19;
+import java.io.*;
+import java.net.*;
+/**
+ *
+ * @author Admin
+ */
+public class server_mang {
+      public static void main(String[] args) {
+          int b[]=new int [10];
+    try{
+        ServerSocket ss=new ServerSocket(10);
+            System.out.println("ser ver dang lang nghe");
+            try{
+            Socket s=ss.accept();
+            System.out.println("client da ket noi voi server");
+            DataInputStream is=new DataInputStream(s.getInputStream());
+             DataOutputStream os=new DataOutputStream(s.getOutputStream());
+             String str=is.readUTF();
+             System.out.println("sophan tu mang: "+str);
+           int n=Integer.parseInt(str);
+           for(int i=0;i<n;i++){
+              b[i]=Integer.parseInt(is.readUTF());  
+              
+            }
+           System.out.println("mang nhan duoc la: ");
+           int min = b[0];
+           for(int i=1;i<n;i++){
+               System.out.println(b[i]+" ");
+               if(min > b[i] ){
+                   min = b[i];
+               }
+               
+           }
+//           int tong=0;
+//           for(int i=0;i<n;i++){
+//               tong=tong+b[i];///thay doi thuat toantai day
+//           }
+//           System.out.println("tong="+tong);
+           os.writeUTF(String.valueOf(min));
+           os.flush();
+        }catch(IOException ie){
+            System.out.println("loi _clien da huy  ket noi: "+ie);
+            
+        }
+        }catch(IOException e){
+                System.out.println("loi2: "+e);
+                }
+    
+    
+    }
+}
+
+
+
+
+
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ktmtk19;
+import java.io.*;
+import java.net.*;
+/**
+ *
+ * @author Admin
+ */
+public class client_mang {
+       public static void main(String[] args) {
+           int n;
+           int a[]=new int[10];
+    try{
+        Socket s=new Socket("127.0.0.1",10);
+         DataInputStream is=new DataInputStream(s.getInputStream());
+             DataOutputStream os=new DataOutputStream(s.getOutputStream());
+
+             try{
+        DataInputStream nhap=new  DataInputStream(System.in);
+       System.out.println("nhap vao so phan tu mang: ");
+n=Integer.parseInt(nhap.readLine());
+os.writeUTF(String.valueOf(n));
+os.flush();
+//nhap phan tu mang
+for(int i=0;i<n;i++){
+    System.out.println("a["+i+"]=");
+    a[i]=Integer.parseInt(nhap.readLine());
+    
+    
+}
+System.out.println("mang vua nhap la: ");
+for(int i=0;i<n;i++){
+    System.out.println(a[i]+" ");
+    
+}
+///xuat  mang sang sever
+for(int i=0;i<n;i++){
+    os.writeUTF(String.valueOf(a[i]));
+    os.flush();
+    
+}  
+String nhan=is.readUTF();
+System.out.println("min mang= "+nhan);
+       
+       
+  }catch(IOException ie){
+        System.out.println("loi: "+ie);
+        
+    }
+              os.close();
+             is.close();
+             s.close();
+              }catch(IOException e){
+        System.out.println("loi: "+e);
+              }
+            
+}
+
+     }
+
+
