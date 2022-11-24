@@ -1,0 +1,129 @@
+
+/*
+power by le minh huu 24/11/2022 @LeHuu02 @copyright
+yeu cau:
+        - tao doi tuong sinh vien gom: ma sv, ten, tuoi, diem, dia chi\
+        - nhap xuat ds xinh vien
+        - in sinh vien co diem < 5
+        - nhap ten sv in ra thong tin
+        - tach ten va ho sinh vien
+
+NOTE:
+*/
+package lehuu_code;
+
+import java.util.Scanner;
+
+class sinhvien{
+    private String masv;
+    private String ten;
+    private String diachi;
+    private int tuoi;
+    private float diem;
+    
+    public String getMasv() {
+        return masv;
+    }
+    public String getTen() {
+        return ten;
+    }
+    public String getDiachi() {
+        return diachi;
+    }
+    public int getTuoi() {
+        return tuoi;
+    }
+    public float getDiem() {
+        return diem;
+    } 
+    public sinhvien(){};
+    public sinhvien(String masv, String ten, String diachi, int tuoi, float diem){
+        this.diachi = diachi;
+        this.masv = masv;
+        this.ten = ten;
+        this.diem = diem;
+        this.tuoi = tuoi;
+    }
+   
+    public void nhap(sinhvien sv[], int n){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("nhap thong tin sinh vien: ");
+        for(int i = 0; i < n; i++){
+            sc.nextLine();
+            System.out.println("sinh vien thu: "+(i+1));
+            System.out.println("=========================");
+            System.out.println("nhap ma: ");
+            masv = sc.nextLine();
+            System.out.println("nhap ten: ");
+            ten = sc.nextLine();
+            System.out.println("nhap dia chi: ");
+            diachi = sc.nextLine();
+            System.out.println("nhap tuoi: ");
+            tuoi = sc.nextInt();
+            System.out.println("nhap diem: ");
+            diem = sc.nextFloat();
+            sv[i] = new sinhvien(masv, ten, diachi, tuoi, diem);
+            
+        }
+    }
+    public void xuat(sinhvien sv[], int n){
+        System.out.println("in thong tin sinh vien vua nhap: ");
+        for(int i = 0; i < n; i++){
+//            sv[i] = new sinhvien();
+            System.out.println(sv[i].toString());
+        }
+    }
+    @Override
+    public String toString() {
+        return "sinhvien{" + "masv=" + masv + ", ten=" + ten + ", diachi=" + diachi + ", tuoi=" + tuoi + ", diem=" + diem + '}';
+    }
+    public void insv5(sinhvien sv[], int n){
+        int dem = 0;
+        System.out.println("sinh vien co diem nho hon 5 la: ");
+        for(int i = 0; i < n; i++){
+            if(sv[i].diem < 5){
+                System.out.println(sv[i].toString());
+                dem++;
+            }
+        }
+        if(dem == 0){
+            System.out.println("khong co sv nao diem < 5");
+        }
+    }
+    public void timkiem(sinhvien sv[], int n){
+        Scanner sc = new Scanner(System.in);
+        String name;
+        int dem = 0;
+        name = sc.nextLine();
+        System.out.println("sinh vien co ten "+name+"la: ");
+        for(int i = 0; i < n; i++){
+            if(name.equals(sv[i].ten)){
+                System.out.println(sv[i].toString());
+                dem++;
+            }
+        }
+        if(dem == 0){
+            System.out.println("khong co sv nao co ten: "+name);
+        }       
+    }
+    
+}
+
+public class c2object_sv{
+    public static void main(String[] args) {
+        sinhvien student = new sinhvien();
+        sinhvien sv[] = new sinhvien[10];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("nhap so luong sinh vien: ");
+        int n = sc.nextInt();
+        try{
+            student.nhap(sv, n);
+            student.xuat(sv, n); 
+            student.insv5(sv, n);
+            student.timkiem(sv, n);
+        }catch(Exception e){
+            System.out.println("CHUC MUNG BAN DA GAP BUG "+ e);
+        }
+
+    }
+}
