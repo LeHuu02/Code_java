@@ -1,0 +1,78 @@
+client: 
+
+
+
+
+
+
+
+        try{
+            Socket s = new Socket("127.0.0.2", 100);
+            try{
+                System.out.println("connect");
+                DataInputStream is = new DataInputStream(s.getInputStream());
+                DataOutputStream os = new DataOutputStream(s.getOutputStream());
+                BufferedReader  br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("send to server: ");
+                String str = br.readLine();
+                os.writeUTF(str);
+                os.flush();
+                str = is.readUTF();
+                System.out.println("server send: "+str);
+            }catch(Exception e){
+                System.out.println("error: "+ e);    
+            }
+        }catch(Exception ei){
+            System.out.println("error: "+ ei);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+server:
+
+
+
+
+
+
+
+
+
+
+
+
+        try{
+         ServerSocket ss = new ServerSocket(100);
+            System.out.println("server dang cho....");
+            try{
+                Socket s = ss.accept();
+                DataInputStream is = new DataInputStream(s.getInputStream());
+                DataOutputStream os = new DataOutputStream(s.getOutputStream());
+                String str = is.readUTF();
+                System.out.println("server nhan duoc: "+str);
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("send to client: ");
+                str = br.readLine();
+                os.writeUTF(str);
+                os.flush();
+            }catch(Exception ei){
+                System.out.println("error: client disconnect "+ ei);
+            }
+        }catch(Exception e){
+            System.out.println("ERROR "+ e);
+        }
